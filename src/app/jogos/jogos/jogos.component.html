@@ -1,0 +1,52 @@
+<div class="div-card">
+  <mat-card class="card">
+    <mat-toolbar color="primary">Jogos</mat-toolbar>
+    <div *ngIf="jogos$ | async as jogos; else loading">
+      <table mat-table [dataSource]="jogos" class="mat-elevation-z8">
+
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let element"> {{ element.nome }} </td>
+        </ng-container>
+
+        <!-- Genero Column -->
+        <ng-container matColumnDef="genero">
+          <th mat-header-cell *matHeaderCellDef> Genero </th>
+          <td mat-cell *matCellDef="let element"> {{ element.genero }} </td>
+        </ng-container>
+
+        <!-- Console Column -->
+        <ng-container matColumnDef="console">
+          <th mat-header-cell *matHeaderCellDef> Console </th>
+          <td mat-cell *matCellDef="let element"> {{ element.console }} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>
+            <button mat-mini-fab color="accent" aria-label="Adicionar jogo">
+              <mat-icon (click)="onAdd()">add</mat-icon>
+            </button>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" aria-label="Editar jogo">
+              <mat-icon (click)="onEdit(element.idJogo)">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Remover jogo">
+              <mat-icon (click)="onRemove(element.idJogo)">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </mat-card>
+</div>
