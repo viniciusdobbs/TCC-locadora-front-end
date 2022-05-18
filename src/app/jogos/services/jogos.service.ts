@@ -28,8 +28,8 @@ export class JogosService {
     return this.httpClient.get<Jogos>(`${this.API}/${id}`).pipe(first());
   }
 
-  private update(jogo: Jogos) {
-    return this.httpClient.put(`${this.API}/${jogo.idJogo}`, jogo).pipe(first());
+  update(jogo: Jogos, id: Jogos["idJogo"]) {
+    return this.httpClient.put(`${this.API}/${id}`, jogo).pipe(first());
   }
 
   remove(id: string) {

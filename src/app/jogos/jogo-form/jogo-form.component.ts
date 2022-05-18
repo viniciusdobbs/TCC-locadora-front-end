@@ -13,6 +13,8 @@ import { JogosService } from './../services/jogos.service';
 export class JogoFormComponent implements OnInit {
 
   form: FormGroup;
+  salvar = false;
+  editar = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,6 +31,10 @@ export class JogoFormComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+      this.onOperacao();
+    }
+
   onSubmit() {
     this.service.save(this.form.value).subscribe({
       next: () => this.onSuccess(),
@@ -41,9 +47,6 @@ export class JogoFormComponent implements OnInit {
     this.location.back();
   }
 
-  ngOnInit(): void {
-  }
-
   private onSuccess() {
     this.snackBar.open('Jogo salvo com sucesso!', '', { duration: 3000 });
     this.onCancel();
@@ -54,10 +57,21 @@ export class JogoFormComponent implements OnInit {
     console.log("erro");
   }
 
-  onAdicionar(){}
-
   onEdit(){
+    this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
+      next: () => this.onSuccess(),
+      error: () => this.onError(),
+      complete: () => console.info('Jogo salvo')
+    });
     console.log(this.route.snapshot.url[1].path)
   }
 
+  onOperacao(){
+    if(this.route.snapshot.url[0].path == "editar"){
+      this.editar = true;
+    }
+    else if (this.route.snapshot.url[0].path == "adicionar"){
+      this.salvar = true;
+    }
+  }
 }

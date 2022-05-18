@@ -7,7 +7,6 @@ import { ErrorDialogComponent } from './../../shared/components/error-dialog/err
 import { Jogos } from './../model/jogos';
 import { JogosService } from './../services/jogos.service';
 
-
 @Component({
   selector: 'app-jogos',
   templateUrl: './jogos.component.html',
@@ -34,6 +33,9 @@ export class JogosComponent implements OnInit {
       );
   }
 
+  ngOnInit(): void {
+  }
+
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
@@ -46,7 +48,6 @@ export class JogosComponent implements OnInit {
 
   onEdit(id: string){
     this.router.navigate(['editar', id], {relativeTo: this.route});
-    console.log(id);
   }
 
   onRemove(id: string){
@@ -65,16 +66,6 @@ export class JogosComponent implements OnInit {
   private onErrorDelete() {
     this.snackBar.open('Erro ao deletar jogo.', '', { duration: 3000 });
     console.log("erro");
-  }
-
-  ngOnInit(): void {
-    this.jogos$ = this.jogosService.list()
-      .pipe(
-        catchError(error => {
-          this.onError('Erro ao carregar jogos');
-          return of([])
-        })
-      );
   }
 
   reloadCurrentRoute() {

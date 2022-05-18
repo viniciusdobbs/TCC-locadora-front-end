@@ -1,4 +1,5 @@
 export interface Clientes {
+  idPessoa: string;
   nome: string;
   cpf: string;
   rg: string;

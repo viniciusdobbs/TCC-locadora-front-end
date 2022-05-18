@@ -24,4 +24,18 @@ export class ClientesService {
     return this.httpClient.post<Clientes>(this.API, record).pipe(first());
   }
 
+
+  loadByID(id: string) {
+    return this.httpClient.get<Clientes>(`${this.API}/${id}`).pipe(first());
+  }
+
+  update(cliente: Clientes, id: Clientes["idPessoa"]) {
+    return this.httpClient.put(`${this.API}/${id}`, cliente).pipe(first());
+  }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`, {responseType: 'text'}).pipe(first());
+    console.log(id);
+  }
+
 }

@@ -1,0 +1,22 @@
+table{
+  width: 100%;
+}
+.mat-column-actions{
+  width: 200px;
+  text-align: center;
+}
+.card {
+  margin: auto;
+}
+.div-card {
+  margin: auto;
+  width: 80%;
+  padding: 100px;
+}
+.loading-spinner{
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
