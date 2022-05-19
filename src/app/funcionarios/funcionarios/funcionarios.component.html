@@ -1,8 +1,8 @@
 <div class="div-card">
   <mat-card class="card">
-    <mat-toolbar color="primary">Clientes</mat-toolbar>
-    <div *ngIf="clientes$ | async as clientes; else loading">
-      <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+    <mat-toolbar color="primary">Funcionários</mat-toolbar>
+    <div *ngIf="funcionarios$ | async as funcionarios; else loading">
+      <table mat-table [dataSource]="funcionarios" class="mat-elevation-z8">
 
         <!-- Nome Column -->
         <ng-container matColumnDef="nome">
@@ -34,10 +34,10 @@
           <td mat-cell *matCellDef="let element"> {{ element.endereco }} </td>
         </ng-container>
 
-        <!-- Telefone Cliente Column -->
-        <ng-container matColumnDef="telefoneCliente">
-          <th mat-header-cell *matHeaderCellDef> Telefone </th>
-          <td mat-cell *matCellDef="let element"> {{ element.telefoneCliente }} </td>
+        <!-- Salario Funcionário Column -->
+        <ng-container matColumnDef="salarioFunc">
+          <th mat-header-cell *matHeaderCellDef> Salário </th>
+          <td mat-cell *matCellDef="let element"> {{ element.salarioFunc }} </td>
         </ng-container>
 
         <!-- Actions Column -->
