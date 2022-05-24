@@ -43,15 +43,15 @@
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>
-            <button mat-raised-button color="primary" aria-label="Adicionar cliente" (click)="onAdd()">
-              Adicionar cliente
+            <button mat-raised-button color="primary" aria-label="Adicionar funcionário" (click)="onAdd()">
+              Adicionar funcionário
             </button>
           </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="accent" aria-label="Editar cliente">
+            <button mat-icon-button color="accent" aria-label="Editar funcionário">
               <mat-icon (click)="onEdit(element.idPessoa)">edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" aria-label="Remover cliente">
+            <button mat-icon-button color="warn" aria-label="Remover funcionário">
               <mat-icon (click)="onRemove(element.idPessoa)">delete</mat-icon>
             </button>
           </td>
