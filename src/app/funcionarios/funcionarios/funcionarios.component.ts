@@ -27,7 +27,7 @@ export class FuncionariosComponent implements OnInit {
     this.funcionarios$ = this.funcionariosService.list()
     .pipe(
       catchError(error => {
-        this.onError('Erro ao carregar clientes');
+        this.onError('Erro ao carregar funcionários');
         return of([])
       })
     );
