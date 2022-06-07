@@ -1,3 +1,4 @@
+import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,7 +10,8 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LocalDateTimePipe
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,9 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LocalDateTimePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

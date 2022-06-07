@@ -1,0 +1,22 @@
+<div class="div-card">
+  <mat-card>
+    <mat-toolbar color="primary">Selecionar data</mat-toolbar>
+    <mat-card-content>
+      <form [formGroup]="form" class="min-width">
+
+        <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="selected" formControlName="dataDevolucao">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="selected"></mat-datepicker-toggle>
+          <mat-datepicker #selected disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onEdit()">Salvar</button>
+      <button mat-raised-button (click)="onCancel()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

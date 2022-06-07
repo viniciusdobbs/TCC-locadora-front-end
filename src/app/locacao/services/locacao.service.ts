@@ -23,4 +23,8 @@ export class LocacaoService {
   save(record: Locacao) {
     return this.httpClient.post<Locacao>(this.API, record).pipe(first());
   }
+
+  update(locacao: Locacao, id: Locacao["idLocacao"]) {
+    return this.httpClient.put(`${this.API}/${id}`, locacao).pipe(first());
+  }
 }
