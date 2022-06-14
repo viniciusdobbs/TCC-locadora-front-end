@@ -1,7 +1,7 @@
 <div class="div-card">
   <mat-card class="card">
     <mat-toolbar color="primary">Clientes</mat-toolbar>
-    <div *ngIf="clientes$ | async as clientes; else loading">
+    <div *ngIf="clientes$ | async | OrderBy:'nome':1 as clientes; else loading">
       <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
 
         <!-- Nome Column -->

@@ -1,3 +1,5 @@
+import { ValorDialogComponent } from './components/error-dialog/valor-dialog/valor-dialog.component';
+import { OrderByPipe } from 'src/app/shared/pipe/order-by.pipe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppMaterialModule } from './app-material/app-material.module';
@@ -8,12 +10,18 @@ import { LocalDateTimePipe } from './pipe/local-date-time.pipe';
 
 @NgModule({
   declarations: [
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    ValorDialogComponent,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
     AppMaterialModule
   ],
-  exports:[ErrorDialogComponent]
+  exports:[
+    ErrorDialogComponent,
+    ValorDialogComponent,
+    OrderByPipe
+  ]
 })
 export class SharedModule { }

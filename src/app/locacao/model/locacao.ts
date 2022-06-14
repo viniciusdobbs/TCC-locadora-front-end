@@ -10,4 +10,5 @@ export interface Locacao {
   funcionario: Funcionarios
   jogo: Jogos;
   dataDevolucao: Date;
+  dataLocacao: Date;
 }

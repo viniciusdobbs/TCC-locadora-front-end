@@ -7,7 +7,7 @@
         <mat-form-field class="full-width">
           <mat-label>Funcionário</mat-label>
           <mat-select formControlName="funcionario">
-            <mat-option *ngFor="let funcionarios of funcionarios$ | async" [value]="funcionarios">{{ funcionarios.nome }}</mat-option>
+            <mat-option *ngFor="let funcionarios of funcionarios$ | async | OrderBy:'nome':1" [value]="funcionarios">{{ funcionarios.nome }}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -22,14 +22,14 @@
         <mat-form-field class="full-width">
           <mat-label>Cliente</mat-label>
           <mat-select formControlName="cliente">
-            <mat-option *ngFor="let clientes of clientes$ | async" [value]="clientes">{{ clientes.nome }}</mat-option>
+            <mat-option *ngFor="let clientes of clientes$ | async | OrderBy:'nome':1" [value]="clientes">{{ clientes.nome }}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Jogo</mat-label>
           <mat-select formControlName="jogo">
-            <mat-option *ngFor="let jogos of jogos$ | async" [value]="jogos">{{ jogos.nome }}</mat-option>
+            <mat-option *ngFor="let jogos of jogos$ | async | OrderBy:'nome':1" [value]="jogos">{{ jogos.nome }}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
