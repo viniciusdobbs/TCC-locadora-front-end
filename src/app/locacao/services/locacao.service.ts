@@ -25,6 +25,6 @@ export class LocacaoService {
   }
 
   update(locacao: Locacao, id: Locacao["idLocacao"]) {
-    return this.httpClient.put(`${this.API}/${id}`, locacao).pipe(first());
+    return this.httpClient.put(`${this.API}/${id}`, locacao, { responseType: 'text' }).pipe(first());
   }
 }
