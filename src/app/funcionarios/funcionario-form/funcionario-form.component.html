@@ -9,27 +9,34 @@
     <mat-card-content>
       <form [formGroup]="form" class="min-width">
         <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="Nome" formControlName="nome">
+          <input matInput type="text" placeholder="Nome" formControlName="nome">
+          <mat-error *ngIf="form.invalid">Nome é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
           <input matInput placeholder="CPF" formControlName="cpf">
+          <mat-error *ngIf="form.invalid">CPF é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
           <input matInput placeholder="RG" formControlName="rg">
+          <mat-error *ngIf="form.invalid">RG é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="Email" formControlName="email">
+          <input matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="form.get('email')?.hasError('required')">Email é obrigatório</mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">Email é inválido</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="Endereço" formControlName="endereco">
+          <input matInput type="text" placeholder="Endereço" formControlName="endereco">
+          <mat-error *ngIf="form.invalid">Endereço é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="Salário" formControlName="salarioFunc">
+          <input matInput type="number" placeholder="Salário" formControlName="salarioFunc">
+          <mat-error *ngIf="form.invalid">Salário é obrigatório</mat-error>
         </mat-form-field>
 
       </form>

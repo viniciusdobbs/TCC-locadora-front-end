@@ -15,7 +15,7 @@ import { JogosService } from './../services/jogos.service';
 export class JogosComponent implements OnInit {
 
   jogos$: Observable<Jogos[]>;
-  displayedColumns = ['nome', 'genero', 'console', 'actions'];
+  displayedColumns = ['nome', 'genero', 'console','preco', 'actions'];
 
   constructor(
     private jogosService: JogosService,

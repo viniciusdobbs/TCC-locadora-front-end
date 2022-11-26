@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "locadora-de-jogos-angular": {
+      "i18n": {
+        "sourceLocale": "en-US"
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {

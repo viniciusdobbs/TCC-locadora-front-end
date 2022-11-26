@@ -1,7 +1,7 @@
 import { Locacao } from './../model/locacao';
 import { LocacaoService } from './../services/locacao.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -67,9 +67,9 @@ export class LocacaoComponent implements OnInit {
       );
 
     this.form = this.formBuilder.group({
-      jogo: [null],
-      cliente: [null],
-      funcionario: [null],
+      jogo: [null, Validators.required],
+      cliente: [null, Validators.required],
+      funcionario: [null, Validators.required],
       valor: [null],
       dia: [null],
     });
@@ -93,11 +93,14 @@ export class LocacaoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
-      next: () => this.onSuccess(),
-      error: () => this.onErrorSubmit(),
-      complete: () => console.info('Locação salvo')
-    });
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe({
+        next: () => this.onSuccess(),
+        error: (data) => this.onErrorSubmit(data),
+        complete: () => console.info('Locação salvo')
+      });
+    }
   }
 
   onCancel() {
@@ -106,12 +109,18 @@ export class LocacaoComponent implements OnInit {
 
   private onSuccess() {
     this.snackBar.open('Locação salvo com sucesso!', '', { duration: 3000 });
-    this.onCancel();
+    this.router.navigate(['/locacao/devolucao']);
   }
 
-  private onErrorSubmit() {
-    this.snackBar.open('Erro ao salvar locação.', '', { duration: 3000 });
+  private onErrorSubmit(data: any) {
+    if (data.status == 406) {
+      this.snackBar.open(data.error, '', { duration: 3000 });
+    }
+    else {
+      this.snackBar.open('Erro ao salvar locação.', '', { duration: 3000 });
+    }
     console.log("erro");
+    console.log(data);
   }
 
 }

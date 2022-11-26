@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../services/clientes.service';
@@ -22,15 +22,16 @@ export class ClienteFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.form = this.formBuilder.group({
-      nome: [null],
-      cpf: [null],
-      rg: [null],
-      email: [null],
-      endereco: [null],
-      telefoneCliente: [null]
+      nome: [null, Validators.required],
+      idadeCliente: [null, Validators.required],
+      cpf: [null, Validators.required],
+      rg: [null, Validators.required],
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      endereco: [null, Validators.required],
+      telefoneCliente: [null, Validators.required]
     });
   }
 
@@ -39,11 +40,14 @@ export class ClienteFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
-      next: () => this.onSuccess(),
-      error: () => this.onError(),
-      complete: () => console.info('Cliente salvo')
-    });
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe({
+        next: () => this.onSuccess(),
+        error: () => this.onError(),
+        complete: () => console.info('Cliente salvo')
+      });
+    }
   }
 
   onCancel() {
@@ -60,20 +64,36 @@ export class ClienteFormComponent implements OnInit {
     console.log("erro");
   }
 
-  onEdit(){
-    this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
-      next: () => this.onSuccess(),
-      error: () => this.onError(),
-      complete: () => console.info('Cliente salvo')
-    });
-    console.log(this.route.snapshot.url[1].path)
+  onEdit() {
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
+        next: () => this.onSuccess(),
+        error: () => this.onError(),
+        complete: () => console.info('Cliente salvo')
+      });
+      console.log(this.route.snapshot.url[1].path)
+    }
   }
 
-  onOperacao(){
-    if(this.route.snapshot.url[0].path == "editar"){
+  onOperacao() {
+    if (this.route.snapshot.url[0].path == "editar") {
       this.editar = true;
+      this.service.loadByID(this.route.snapshot.url[1].path).subscribe(
+        (data) => {
+          this.form.patchValue({
+            nome: data.nome,
+            idadeCliente: data.idadeCliente,
+            cpf: data.cpf,
+            rg: data.rg,
+            email: data.email,
+            endereco: data.endereco,
+            telefoneCliente: data.telefoneCliente
+          })
+        }
+      );
     }
-    else if (this.route.snapshot.url[0].path == "adicionar"){
+    else if (this.route.snapshot.url[0].path == "adicionar") {
       this.salvar = true;
     }
   }

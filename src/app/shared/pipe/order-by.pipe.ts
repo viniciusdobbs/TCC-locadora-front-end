@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 @Pipe({
   name: "OrderBy"
 })
-export class OrderByPipe  implements PipeTransform {
+export class OrderByPipe implements PipeTransform {
   transform(array: any, field: string, direction: number): any[] {
     if (!Array.isArray(array)) {
       return [];
@@ -11,9 +11,17 @@ export class OrderByPipe  implements PipeTransform {
     array.sort((a: any, b: any) => {
       if (a[field] < b[field]) {
         return -1 * direction;
-      } else if (a[field] > b[field]) {
+      }
+      else if (a[field] > b[field]) {
         return 1 * direction;
-      } else {
+      }
+      else if (b[field] == null) {
+        return -1 * direction;
+      }
+      else if (a[field] == null) {
+        return 1 * direction;
+      }
+      else {
         return 0;
       }
     });

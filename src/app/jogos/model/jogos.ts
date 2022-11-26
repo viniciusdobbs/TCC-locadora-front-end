@@ -3,4 +3,5 @@ export interface Jogos {
   nome: string;
   genero: number;
   console: number;
+  preco: number;
 }

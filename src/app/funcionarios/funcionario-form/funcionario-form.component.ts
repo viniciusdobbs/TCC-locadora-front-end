@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuncionariosService } from './../services/funcionarios.service';
@@ -25,12 +25,12 @@ export class FuncionarioFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
-      nome: [null],
-      cpf: [null],
-      rg: [null],
-      email: [null],
-      endereco: [null],
-      salarioFunc: [null]
+      nome: [null, Validators.required],
+      cpf: [null, Validators.required],
+      rg: [null, Validators.required],
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      endereco: [null, Validators.required],
+      salarioFunc: [null, Validators.required]
     });
   }
 
@@ -39,11 +39,14 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
-      next: () => this.onSuccess(),
-      error: () => this.onError(),
-      complete: () => console.info('Funcionário salvo')
-    });
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe({
+        next: () => this.onSuccess(),
+        error: () => this.onError(),
+        complete: () => console.info('Funcionário salvo')
+      });
+    }
   }
 
   onCancel() {
@@ -60,20 +63,35 @@ export class FuncionarioFormComponent implements OnInit {
     console.log("erro");
   }
 
-  onEdit(){
-    this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
-      next: () => this.onSuccess(),
-      error: () => this.onError(),
-      complete: () => console.info('Funcionário salvo')
-    });
-    console.log(this.route.snapshot.url[1].path)
+  onEdit() {
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
+        next: () => this.onSuccess(),
+        error: () => this.onError(),
+        complete: () => console.info('Funcionário salvo')
+      });
+      console.log(this.route.snapshot.url[1].path)
+    }
   }
 
-  onOperacao(){
-    if(this.route.snapshot.url[0].path == "editar"){
+  onOperacao() {
+    if (this.route.snapshot.url[0].path == "editar") {
       this.editar = true;
+      this.service.loadByID(this.route.snapshot.url[1].path).subscribe(
+        (data) => {
+          this.form.patchValue({
+            nome: data.nome,
+            cpf: data.cpf,
+            rg: data.rg,
+            email: data.email,
+            endereco: data.endereco,
+            salarioFunc: data.salarioFunc
+          })
+        }
+      );
     }
-    else if (this.route.snapshot.url[0].path == "adicionar"){
+    else if (this.route.snapshot.url[0].path == "adicionar") {
       this.salvar = true;
     }
   }
