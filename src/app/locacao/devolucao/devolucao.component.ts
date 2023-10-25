@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,7 +23,7 @@ export class DevolucaoComponent implements OnInit {
   locacao$: Observable<Locacao[]>;
   clientes$: Observable<Clientes[]>;
   displayedColumns = ['cliente', 'jogo', 'funcionario', 'dataLocacao', 'dataDevolucao','valorDia','valorFinal', 'actions'];
-  form: FormGroup;
+  form: UntypedFormGroup;
   selectedValue: any;
   locacao: any;
 
@@ -35,7 +35,7 @@ export class DevolucaoComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private location: Location,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     this.locacao$ = this.service.list()
       .pipe(

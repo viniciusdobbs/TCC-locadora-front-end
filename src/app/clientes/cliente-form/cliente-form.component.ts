@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../services/clientes.service';
@@ -12,12 +12,12 @@ import { ClientesService } from '../services/clientes.service';
 })
 export class ClienteFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   salvar = false;
   editar = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private service: ClientesService,
     private snackBar: MatSnackBar,
     private location: Location,

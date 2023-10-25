@@ -1,7 +1,7 @@
 import { JogosService } from 'src/app/jogos/services/jogos.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Jogos } from '../model/jogos';
@@ -13,12 +13,12 @@ import { Jogos } from '../model/jogos';
 })
 export class JogoFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   salvar = false;
   editar = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private service: JogosService,
     private snackBar: MatSnackBar,
     private location: Location,

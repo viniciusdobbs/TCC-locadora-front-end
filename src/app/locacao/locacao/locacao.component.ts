@@ -1,7 +1,7 @@
 import { Locacao } from './../model/locacao';
 import { LocacaoService } from './../services/locacao.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,11 +27,11 @@ export class LocacaoComponent implements OnInit {
   clientes$: Observable<Clientes[]>;
   funcionarios$: Observable<Funcionarios[]>;
   locacao$: Observable<Locacao[]>;
-  form: FormGroup;
+  form: UntypedFormGroup;
   displayedColumns = ['nome', 'cpf', 'rg', 'email', 'endereco', 'telefoneCliente', 'actions'];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private service: LocacaoService,
     private jogosService: JogosService,
     private clientesService: ClientesService,
