@@ -6,6 +6,9 @@ import { SharedModule } from './../shared/shared.module';
 import { JogoFormComponent } from './jogo-form/jogo-form.component';
 import { JogosRoutingModule } from './jogos-routing.module';
 import { JogosComponent } from './jogos/jogos.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { JogosComponent } from './jogos/jogos.component';
     JogosRoutingModule,
     AppMaterialModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class JogosModule { }

@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatToolbarModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     LocalDateTimePipe,
