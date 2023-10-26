@@ -4,4 +4,5 @@ export interface Jogos {
   genero: number;
   console: number;
   preco: number;
+  quantidade: number;
 }

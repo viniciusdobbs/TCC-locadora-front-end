@@ -8,8 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { Clientes } from 'src/app/clientes/model/clientes';
 import { ClientesService } from 'src/app/clientes/services/clientes.service';
-import { Funcionarios } from 'src/app/funcionarios/model/funcionarios';
-import { FuncionariosService } from 'src/app/funcionarios/services/funcionarios.service';
 import { Jogos } from 'src/app/jogos/model/jogos';
 import { JogosService } from 'src/app/jogos/services/jogos.service';
 
@@ -25,7 +23,6 @@ export class LocacaoComponent implements OnInit {
 
   jogos$: Observable<Jogos[]>;
   clientes$: Observable<Clientes[]>;
-  funcionarios$: Observable<Funcionarios[]>;
   locacao$: Observable<Locacao[]>;
   form: UntypedFormGroup;
   displayedColumns = ['nome', 'cpf', 'rg', 'email', 'endereco', 'telefoneCliente', 'actions'];
@@ -35,7 +32,6 @@ export class LocacaoComponent implements OnInit {
     private service: LocacaoService,
     private jogosService: JogosService,
     private clientesService: ClientesService,
-    public funcionariosService: FuncionariosService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
@@ -58,18 +54,9 @@ export class LocacaoComponent implements OnInit {
         })
       );
 
-    this.funcionarios$ = this.funcionariosService.list()
-      .pipe(
-        catchError(error => {
-          this.onError('Erro ao carregar funcionários');
-          return of([])
-        })
-      );
-
     this.form = this.formBuilder.group({
       jogo: [null, Validators.required],
       cliente: [null, Validators.required],
-      funcionario: [null, Validators.required],
       valor: [null],
       dia: [null],
     });

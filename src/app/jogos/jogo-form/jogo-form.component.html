@@ -43,6 +43,11 @@
           <span matPrefix>R$&nbsp;</span>
           <mat-error *ngIf="form.invalid">Preço é obrigatório</mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <input matInput type="number" placeholder="Quantidade" formControlName="quantidade">
+          <mat-error *ngIf="form.invalid">Quantidade é obrigatória</mat-error>
+        </mat-form-field>
         <p>Form Status: {{ form.status }}</p>
       </form>
     </mat-card-content>

@@ -26,12 +26,8 @@ export class ClienteFormComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       nome: [null, Validators.required],
-      idadeCliente: [null, Validators.required],
       cpf: [null, Validators.required],
-      rg: [null, Validators.required],
-      email: [null, Validators.compose([Validators.required, Validators.email])],
-      endereco: [null, Validators.required],
-      telefoneCliente: [null, Validators.required]
+      email: [null, Validators.compose([Validators.required, Validators.email])]
     });
   }
 
@@ -83,12 +79,8 @@ export class ClienteFormComponent implements OnInit {
         (data) => {
           this.form.patchValue({
             nome: data.nome,
-            idadeCliente: data.idadeCliente,
             cpf: data.cpf,
-            rg: data.rg,
             email: data.email,
-            endereco: data.endereco,
-            telefoneCliente: data.telefoneCliente
           })
         }
       );

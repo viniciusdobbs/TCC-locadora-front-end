@@ -29,7 +29,7 @@ export class ClientesService {
     return this.httpClient.get<Clientes>(`${this.API}/${id}`).pipe(first());
   }
 
-  update(cliente: Clientes, id: Clientes["idPessoa"]) {
+  update(cliente: Clientes, id: Clientes["idCliente"]) {
     return this.httpClient.put(`${this.API}/${id}`, cliente).pipe(first());
   }
 

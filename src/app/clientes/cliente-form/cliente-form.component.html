@@ -14,34 +14,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <input matInput type="number" placeholder="Idade" formControlName="idadeCliente">
-          <mat-error *ngIf="form.invalid">Idade é obrigatório</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="CPF" formControlName="cpf" mask="(00) 0000-0000" maxlength="14">
+          <input matInput placeholder="CPF" formControlName="cpf" mask="(00) 0000-0000" maxlength="14" [readonly]="editar">
           <mat-error *ngIf="form.invalid">CPF é obrigatório</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="RG" formControlName="rg" maxlength="12">
-          <mat-error *ngIf="form.invalid">RG é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
           <input matInput type="email" placeholder="Email" formControlName="email">
           <mat-error *ngIf="form.get('email')?.hasError('required')">Email é obrigatório</mat-error>
           <mat-error *ngIf="form.get('email')?.hasError('email')">Email é inválido</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <input matInput type="text" placeholder="Endereço" formControlName="endereco">
-          <mat-error *ngIf="form.invalid">Endereço é obrigatório</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <input matInput placeholder="Telefone" formControlName="telefoneCliente" maxlength="14">
-          <mat-error *ngIf="form.invalid">Telefone é obrigatório</mat-error>
         </mat-form-field>
         <!-- <p>Form Status: {{ form.status }}</p> -->
       </form>

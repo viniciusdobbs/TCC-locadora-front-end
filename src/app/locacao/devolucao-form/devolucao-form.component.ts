@@ -46,8 +46,13 @@ export class DevolucaoFormComponent implements OnInit {
     this.onModal(data);
   }
 
-  private onError() {
-    this.snackBar.open('Erro ao salvar devolução.', '', { duration: 3000 });
+  private onError(data: any) {
+    if (data.status == 406) {
+      this.snackBar.open(data.error, '', { duration: 3000 });
+    }
+    else {
+      this.snackBar.open('Erro ao salvar devolução.', '', { duration: 3000 });
+    }
     console.log("erro");
   }
 
@@ -62,7 +67,7 @@ export class DevolucaoFormComponent implements OnInit {
     //this.form.value.dataDevolucao = newDate.format("YYYY-MM-DDTHH:mm:ss")
     this.service.update(this.form.value, this.route.snapshot.url[1].path).subscribe({
       next: (data) => this.onSuccess(data),
-      error: () => this.onError(),
+      error: (data) => this.onError(data),
       complete: () => console.info('Devolução salva')
     });
     console.log(this.route.snapshot.url[1].path)

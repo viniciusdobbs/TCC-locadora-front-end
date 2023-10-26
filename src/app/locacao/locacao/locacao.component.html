@@ -4,13 +4,6 @@
     </mat-toolbar>
     <mat-card-content>
       <form [formGroup]="form" class="min-width">
-        <mat-form-field class="full-width">
-          <mat-label>Funcionário</mat-label>
-          <mat-select formControlName="funcionario">
-            <mat-option *ngFor="let funcionarios of funcionarios$ | async | OrderBy:'nome':1" [value]="funcionarios">{{ funcionarios.nome }}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="form.invalid">Funcionário é obrigatório</mat-error>
-        </mat-form-field>
 
         <!-- <mat-form-field appearance="fill" class="medium-width">
           <input matInput placeholder="Valor" formControlName="valor">

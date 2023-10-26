@@ -22,7 +22,7 @@ export class DevolucaoComponent implements OnInit {
 
   locacao$: Observable<Locacao[]>;
   clientes$: Observable<Clientes[]>;
-  displayedColumns = ['cliente', 'jogo', 'funcionario', 'dataLocacao', 'dataDevolucao','valorDia','valorFinal', 'actions'];
+  displayedColumns = ['cliente', 'jogo', 'dataLocacao', 'dataDevolucao','valorDia','valorFinal', 'actions'];
   form: UntypedFormGroup;
   selectedValue: any;
   locacao: any;

@@ -30,7 +30,8 @@ export class JogoFormComponent implements OnInit {
       nome: [null, Validators.required],
       genero: [null, Validators.required],
       console: [null, Validators.required],
-      preco: [null, Validators.required]
+      preco: [null, Validators.required],
+      quantidade: [null, Validators.required]
     });
   }
 
@@ -84,7 +85,8 @@ export class JogoFormComponent implements OnInit {
             nome: data.nome,
             genero: this.genero(data.genero),
             console: this.console(data.console),
-            preco: data.preco
+            preco: data.preco,
+            quantidade: data.quantidade
           })
         }
       );
